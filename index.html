@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estadística Descriptiva | Presentación Académica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #fafafa;
+      --bg-card: #ffffff;
+      --text-primary: #1a1a2e;
+      --text-secondary: #4a4a5a;
+      --text-muted: #6b6b7a;
+      --border-color: #e8e8ec;
+      --accent: #2c3e50;
+      --accent-light: #34495e;
+      --chart-color: #4ecdc4; /* Color similar al de tu imagen */
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+    }
+
+    nav a {
+      padding: 10px 20px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    nav a.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Main Content */
+    main {
+      padding: 48px 0 80px;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-number {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 2.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    
+    .card-main-title {
+        font-family: 'Crimson Pro', Georgia, serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 24px;
+        padding-left: 12px;
+        border-left: 4px solid var(--accent);
+    }
+
+    .card-description {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* ESTILOS NUEVOS PARA LA GALERÍA DE GRÁFICAS */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .chart-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chart-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #4ecdc4; /* Color turquesa de tu imagen */
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    .chart-img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      object-fit: contain;
+      max-height: 250px;
+      background: white; /* Fondo blanco para la imagen */
+    }
+
+    /* Data Grid */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .data-item {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      padding: 8px;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      border-radius: 4px;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    thead {
+      background: var(--accent);
+      color: white;
+    }
+
+    th {
+      padding: 14px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    th:first-child {
+      border-radius: 6px 0 0 0;
+    }
+
+    th:last-child {
+      border-radius: 0 6px 0 0;
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+    tbody tr:hover {
+      background: #f8f9fa;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:last-child td:first-child {
+      border-radius: 0 0 0 6px;
+    }
+
+    tbody tr:last-child td:last-child {
+      border-radius: 0 0 6px 0;
+    }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .stat-item {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* String Cards */
+    .string-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .string-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      padding: 16px;
+      border-radius: 6px;
+    }
+
+    .string-value {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .string-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .string-chars {
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-color);
+      word-break: break-all;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      padding: 24px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .data-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+      }
+
+      .string-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+      }
+    }
+
+    @media print {
+      header, nav, footer {
+        display: none;
+      }
+
+      .section {
+        display: block !important;
+        page-break-after: always;
+      }
+
+      .card {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-content">
+      <div class="logo">Estadística <span>Descriptiva</span></div>
+      <nav>
+        <a href="#ejemplo1" class="nav-link active" data-section="ejemplo1">Discretos</a>
+        <a href="#ejemplo2" class="nav-link" data-section="ejemplo2">Continuos</a>
+        <a href="#ejemplo3" class="nav-link" data-section="ejemplo3">Cualitativos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section id="ejemplo1" class="section active">
+      <div class="section-header">
+        <span class="section-number">Ejemplo 1</span>
+        <h1 class="section-title">Datos Cuantitativos Discretos</h1>
+        <p class="section-subtitle">Número de libros leídos por 100 estudiantes universitarios durante el semestre académico</p>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Conjunto de Datos (n = 100)</h2>
+        <p class="card-description">Valores enteros que representan la cantidad de libros leídos por cada estudiante</p>
+        
+        <div class="data-grid">
+          <div class="data-item">3</div><div class="data-item">5</div><div class="data-item">2</div><div class="data-item">4</div><div class="data-item">6</div><div class="data-item">3</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">2</div><div class="data-item">5</div>
+          <div class="data-item">4</div><div class="data-item">3</div><div class="data-item">6</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">3</div><div class="data-item">2</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">6</div>
+          <div class="data-item">3</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">2</div><div class="data-item">5</div><div class="data-item">3</div><div class="data-item">4</div><div class="data-item">6</div><div class="data-item">5</div><div class="data-item">4</div>
+          <div class="data-item">3</div><div class="data-item">2</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">3</div><div class="data-item">6</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">3</div><div class="data-item">5</div>
+          <div class="data-item">4</div><div class="data-item">2</div><div class="data-item">5</div><div class="data-item">3</div><div class="data-item">4</div><div class="data-item">6</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">3</div><div class="data-item">5</div>
+          <div class="data-item">4</div><div class="data-item">3</div><div class="data-item">2</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">6</div><div class="data-item">3</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">5</div>
+          <div class="data-item">3</div><div class="data-item">4</div><div class="data-item">2</div><div class="data-item">5</div><div class="data-item">6</div><div class="data-item">4</div><div class="data-item">3</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">3</div>
+          <div class="data-item">5</div><div class="data-item">4</div><div class="data-item">2</div><div class="data-item">6</div><div class="data-item">3</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">3</div><div class="data-item">5</div><div class="data-item">4</div>
+          <div class="data-item">6</div><div class="data-item">3</div><div class="data-item">5</div><div class="data-item">4</div><div class="data-item">2</div><div class="data-item">5</div><div class="data-item">3</div><div class="data-item">4</div><div class="data-item">6</div><div class="data-item">5</div>
+          <div class="data-item">4</div><div class="data-item">3</div><div class="data-item">5</div><div class="data-item">2</div><div class="data-item">4</div><div class="data-item">6</div><div class="data-item">5</div><div class="data-item">3</div><div class="data-item">4</div><div class="data-item">5</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">100</div>
+            <div class="stat-label">Total de Datos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">2</div>
+            <div class="stat-label">Valor Mínimo</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">6</div>
+            <div class="stat-label">Valor Máximo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Tabla de Frecuencias</h2>
+        <p class="card-description">Distribución de frecuencias para datos discretos sin agrupar</p>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>xi (Libros)</th>
+                <th>fi (Frec. Absoluta)</th>
+                <th>hi (Frec. Relativa)</th>
+                <th>% (Porcentaje)</th>
+                <th>Fi (Frec. Acumulada)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>2</td><td>12</td><td>0.12</td><td>12%</td><td>12</td></tr>
+              <tr><td>3</td><td>20</td><td>0.20</td><td>20%</td><td>32</td></tr>
+              <tr><td>4</td><td>24</td><td>0.24</td><td>24%</td><td>56</td></tr>
+              <tr><td>5</td><td>28</td><td>0.28</td><td>28%</td><td>84</td></tr>
+              <tr><td>6</td><td>16</td><td>0.16</td><td>16%</td><td>100</td></tr>
+              <tr style="background: #f8f9fa; font-weight: 600;">
+                <td>Total</td><td>100</td><td>1.00</td><td>100%</td><td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-main-title">| Galería de Gráficas</h2>
+        <div class="gallery-grid">
+          
+          <div class="chart-card">
+            <div class="chart-label">Discreto - Barras Horizontales</div>
+            <img src="graficas/Discreto_Libros_Leídos_BarrasH_trans.png" alt="Gráfica de Barras Horizontales" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Discreto - Histograma</div>
+            <img src="graficas/Discreto_Libros_Leídos_Hist_trans.png" alt="Histograma" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Discreto - Distribución Circular</div>
+            <img src="graficas/Discreto_Libros_Leídos_Pastel_trans.png" alt="Gráfica Circular" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Discreto - Polígono de Frecuencias</div>
+            <img src="graficas/Discreto_Libros_Leídos_Poligono_trans.png" alt="Polígono de Frecuencias" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Discreto - Ojiva (Acumulada)</div>
+            <img src="graficas/Discreto_Libros_Leídos_Ojiva_trans.png" alt="Ojiva Acumulada" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Discreto - Gráfico de Línea</div>
+            <img src="graficas/Discreto_Libros_Leídos_Lineal_trans.png" alt="Gráfico de Línea" class="chart-img">
+          </div>
+
+        </div>
+      </div>
+      </section>
+
+    <section id="ejemplo2" class="section">
+      <div class="section-header">
+        <span class="section-number">Ejemplo 2</span>
+        <h1 class="section-title">Datos Cuantitativos Continuos</h1>
+        <p class="section-subtitle">Estatura en centímetros de 100 estudiantes universitarios</p>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Conjunto de Datos (n = 100)</h2>
+        <p class="card-description">Valores continuos que representan la estatura en centímetros de cada estudiante</p>
+        
+        <div class="data-grid">
+           <div class="data-item">165</div><div class="data-item">172</div><div class="data-item">158</div><div class="data-item">175</div><div class="data-item">168</div><div class="data-item">162</div><div class="data-item">178</div><div class="data-item">170</div><div class="data-item">155</div><div class="data-item">173</div>
+           </div>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">100</div>
+            <div class="stat-label">Total de Datos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">155</div>
+            <div class="stat-label">Valor Mínimo (cm)</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">182</div>
+            <div class="stat-label">Valor Máximo (cm)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Tabla de Datos Agrupados</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Intervalo (cm)</th>
+                <th>Marca de Clase (xi)</th>
+                <th>fi</th>
+                <th>hi</th>
+                <th>%</th>
+                <th>Fi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>[155 - 160)</td><td>157.5</td><td>12</td><td>0.12</td><td>12%</td><td>12</td></tr>
+              <tr><td>[160 - 165)</td><td>162.5</td><td>14</td><td>0.14</td><td>14%</td><td>26</td></tr>
+              <tr><td>[165 - 170)</td><td>167.5</td><td>22</td><td>0.22</td><td>22%</td><td>48</td></tr>
+              <tr><td>[170 - 175)</td><td>172.5</td><td>20</td><td>0.20</td><td>20%</td><td>68</td></tr>
+              <tr><td>[175 - 180)</td><td>177.5</td><td>22</td><td>0.22</td><td>22%</td><td>90</td></tr>
+              <tr><td>[180 - 185)</td><td>182.5</td><td>10</td><td>0.10</td><td>10%</td><td>100</td></tr>
+              <tr style="background: #f8f9fa; font-weight: 600;">
+                <td>Total</td><td>-</td><td>100</td><td>1.00</td><td>100%</td><td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h2 class="card-main-title">| Galería de Gráficas</h2>
+        <div class="gallery-grid">
+          
+          <div class="chart-card">
+            <div class="chart-label">Continuos - Barras Horizontales</div>
+            <img src="graficas/Continuo_Estatura_cm_BarrasH_trans.png" alt="Gráfica de Barras Horizontales" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Continuos - Histograma</div>
+            <img src="graficas/Continuo_Estatura_cm_Hist_trans.png" alt="Histograma" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Continuos - Distribución Circular</div>
+            <img src="graficas/Continuo_Estatura_cm_Lineal_trans.png" alt="Gráfica Circular" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Continuos - Polígono de Frecuencias</div>
+            <img src="graficas/Continuo_Estatura_cm_Poligono_trans.png" alt="Polígono de Frecuencias" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Continuos - Ojiva (Acumulada)</div>
+            <img src="graficas/Continuo_Estatura_cm_Ojiva_trans.png" alt="Ojiva Acumulada" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Continuos - Gráfico de Línea</div>
+            <img src="graficas/Continuo_Estatura_cm_Lineal_trans.png" alt="Gráfico de Línea" class="chart-img">
+          </div>
+    </section>
+
+    <section id="ejemplo3" class="section">
+      <div class="section-header">
+        <span class="section-number">Ejemplo 3</span>
+        <h1 class="section-title">Datos Cualitativos</h1>
+        <p class="section-subtitle">Carrera universitaria de 100 estudiantes encuestados</p>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Conjunto de Datos (n = 100)</h2>
+        <p class="card-description">Variables categóricas nominales representando carreras universitarias</p>
+        
+        <div class="data-grid">
+           <div class="data-item">Ing</div><div class="data-item">Med</div><div class="data-item">Der</div><div class="data-item">Adm</div><div class="data-item">Psi</div><div class="data-item">Ing</div><div class="data-item">Med</div><div class="data-item">Adm</div><div class="data-item">Der</div><div class="data-item">Psi</div>
+           </div>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">100</div>
+            <div class="stat-label">Total de Datos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">5</div>
+            <div class="stat-label">Categorías</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">Nominal</div>
+            <div class="stat-label">Tipo de Escala</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Tabla de Frecuencias</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Categoría</th>
+                <th>Abreviatura</th>
+                <th>fi</th>
+                <th>hi</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Ingeniería</td><td>Ing</td><td>22</td><td>0.22</td><td>22%</td></tr>
+              <tr><td>Medicina</td><td>Med</td><td>20</td><td>0.20</td><td>20%</td></tr>
+              <tr><td>Administración</td><td>Adm</td><td>22</td><td>0.22</td><td>22%</td></tr>
+              <tr><td>Derecho</td><td>Der</td><td>18</td><td>0.18</td><td>18%</td></tr>
+              <tr><td>Psicología</td><td>Psi</td><td>18</td><td>0.18</td><td>18%</td></tr>
+              <tr style="background: #f8f9fa; font-weight: 600;">
+                <td>Total</td><td>-</td><td>100</td><td>1.00</td><td>100%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Representación como Cadenas de Caracteres</h2>
+        <div class="string-grid">
+          <div class="string-card">
+            <div class="string-value">"Ingeniería"</div>
+            <div class="string-meta">
+              <span>Longitud: 10 caracteres</span>
+            </div>
+            <div class="string-chars">['I','n','g','e','n','i','e','r','i','a']</div>
+          </div>
+          <div class="string-card">
+            <div class="string-value">"Medicina"</div>
+            <div class="string-meta">
+              <span>Longitud: 8 caracteres</span>
+            </div>
+            <div class="string-chars">['M','e','d','i','c','i','n','a']</div>
+          </div>
+          <div class="string-card">
+            <div class="string-value">"Administración"</div>
+            <div class="string-meta">
+              <span>Longitud: 14 caracteres</span>
+            </div>
+            <div class="string-chars">['A','d','m','i','n','i','s','t','r','a','c','i','o','n']</div>
+          </div>
+          <div class="string-card">
+            <div class="string-value">"Derecho"</div>
+            <div class="string-meta">
+              <span>Longitud: 7 caracteres</span>
+            </div>
+            <div class="string-chars">['D','e','r','e','c','h','o']</div>
+          </div>
+          <div class="string-card">
+            <div class="string-value">"Psicología"</div>
+            <div class="string-meta">
+              <span>Longitud: 10 caracteres</span>
+            </div>
+            <div class="string-chars">['P','s','i','c','o','l','o','g','i','a']</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2 class="card-main-title">| Galería de Gráficas</h2>
+        <div class="gallery-grid">
+          
+          <div class="chart-card">
+            <div class="chart-label">Cualitativos - Barras Horizontales</div>
+            <img src="graficas/Cualitativo_Carreras_BarrasH_trans.png" alt="Gráfica de Barras Horizontales" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Cualitativos - Histograma</div>
+            <img src="graficas/Cualitativo_Carreras_Hist_trans.png" alt="Histograma" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Cualitativos - Distribución Circular</div>
+            <img src="graficas/Cualitativo_Carreras_Pastel_trans.png" alt="Gráfica Circular" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Cualitativos - Polígono de Frecuencias</div>
+            <img src="graficas/Cualitativo_Carreras_Poligono_trans.png" alt="Polígono de Frecuencias" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Cualitativos - Ojiva (Acumulada)</div>
+            <img src="graficas/Cualitativo_Carreras_Ojiva_trans.png" alt="Ojiva Acumulada" class="chart-img">
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-label">Cualitativos - Gráfico de Línea</div>
+            <img src="graficas/Cualitativo_Carreras_Lineal_trans.png" alt="Gráfico de Línea" class="chart-img">
+          </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Estadística Descriptiva - Presentación Académica</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('.section');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetSection = this.getAttribute('data-section');
+          
+          navLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          
+          sections.forEach(s => s.classList.remove('active'));
+          document.getElementById(targetSection).classList.add('active');
+          
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
