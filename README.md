@@ -1,3 +1,7 @@
-Datos cuantitativos discretos
-Datos cuantitativos continuos 
-Datos cualitativos 
+1. Datos cuantitativos discretos
+
+2. Datos cuantitativos continuos 
+
+3. Datos cualitativos 
+
+
