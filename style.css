@@ -1,0 +1,141 @@
+/* Paleta de Colores y Variables */
+:root {
+    --primary: #1a2a6c;
+    --secondary: #2c3e50;
+    --accent: #3498db;
+    --bg: hsl(207, 22%, 92%);
+    --white: #ffffff;
+    --border: #dee2e6;
+    --shadow: rgba(0, 0, 0, 0.06);
+}
+
+/* Configuración General */
+body { 
+    font-family: 'Segoe UI', Arial, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background-color: var(--bg); 
+    color: #333; 
+}
+
+.container { 
+    max-width: 1100px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
+}
+
+/* Encabezado */
+header { 
+    text-align: center; 
+    padding: 50px 20px; 
+    background: linear-gradient(135deg, #1a2a6c, #232526); 
+    color: white; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+header p {
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+/* Tarjetas de Sección */
+.section-card { 
+    background: var(--white); 
+    border-radius: 12px; 
+    padding: 35px; 
+    margin-bottom: 50px; 
+    box-shadow: 0 8px 20px var(--shadow);
+    border: 1px solid #edf2f7;
+}
+
+h2 { 
+    color: var(--primary); 
+    border-left: 6px solid var(--primary); 
+    padding-left: 15px; 
+    margin-bottom: 25px; 
+    font-size: 1.6rem;
+}
+
+/* Estilos de Tabla */
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-bottom: 20px; 
+    font-size: 0.9rem;
+    background-color: white;
+}
+
+th { 
+    background-color: #f1f4f8; 
+    color: var(--secondary); 
+    padding: 15px; 
+    border: 1px solid var(--border); 
+    font-weight: 600;
+}
+
+td { 
+    padding: 12px; 
+    border: 1px solid #eee; 
+    text-align: center; 
+}
+
+tr:hover {
+    background-color: #fcfcfc;
+}
+
+/* Caja de Interpretación */
+.interpretation-box { 
+    background-color: #eef7ff; 
+    border-left: 5px solid var(--accent); 
+    padding: 20px; 
+    margin: 20px 0; 
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* Rejilla de Gráficos (Grid) */
+.grid-charts { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 25px; 
+    margin-top: 30px; 
+}
+
+.chart-item { 
+    padding: 20px; 
+    border: 1px solid #f0f0f0; 
+    border-radius: 10px; 
+    background: #fafafa;
+    transition: transform 0.2s ease;
+}
+
+.chart-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.full-width { 
+    grid-column: span 2; 
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .grid-charts {
+        grid-template-columns: 1fr;
+    }
+    
+    .full-width {
+        grid-column: span 1;
+    }
+    
+    header h1 {
+        font-size: 1.6rem;
+    }
+}
