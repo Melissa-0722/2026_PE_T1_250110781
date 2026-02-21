@@ -1,104 +1,42 @@
-/* Paleta de Colores y Variables */
-
 :root {
-    --primary: #4facfe; /* Un azul más brillante para resaltar en el negro */
-    --secondary: #bdc3c7;
-    --accent: #00f2fe;
-    --bg: #000000;      /* Fondo negro total */
-    --card-bg: #1a1a1a; /* Fondo de las tarjetas (gris muy oscuro) */
-    --white: #ffffff;
-    --text-main: #e0e0e0;
-}
-
-body { 
-    font-family: 'Segoe UI', Arial, sans-serif; 
-    margin: 0; 
-    padding: 0; 
-    background-color: var(--bg); 
-    color: var(--text-main); 
-}
-
-.container { 
-    max-width: 1100px; 
-    margin: 40px auto; 
-    padding: 0 20px; 
-}
-
-header { 
-    text-align: center; 
-    padding: 50px 20px; 
-    background: linear-gradient(135deg, #1a2a6c, #000000); /* Degradado a negro */
-    color: white; 
-    border-bottom: 1px solid #333;
-}
-
-.section-card { 
-    background: var(--card-bg); 
-    border-radius: 12px; 
-    padding: 35px; 
-    margin-bottom: 50px; 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    border: 1px solid #333;
-}
-
-h2 { 
-    color: var(--primary); 
-    border-left: 6px solid var(--primary); 
-    padding-left: 15px; 
-    margin-bottom: 25px; 
-}
-
-/* Tablas en modo oscuro */
-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-    margin-bottom: 20px; 
-    font-size: 0.9rem;
-    color: #fff;
-}
-
-th { 
-    background-color: #2c3e50; 
-    color: var(--white); 
-    padding: 15px; 
-    border: 1px solid #444; 
-}
-
-td { 
-    padding: 12px; 
-    border: 1px solid #333; 
-    text-align: center; 
-    background-color: #222;
-}
-
-/* Caja de interpretación */
-.interpretation-box { 
-    background-color: #0d1b2a; 
-    border-left: 5px solid var(--accent); 
-    padding: 20px; 
-    margin: 20px 0; 
-    border-radius: 0 8px 8px 0;
-    font-style: italic;
-    color: #add8e6;
-}
-
-.grid-charts { 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 25px; 
-    margin-top: 30px; 
-}
-
-.chart-item { 
-    padding: 20px; 
-    border: 1px solid #333; 
-    border-radius: 10px; 
-    background: #111; /* Fondo para que las gráficas resalten */
-}
-
-.full-width { 
-    grid-column: span 2; 
-}
+            --primary: #5cccd0;
+            --secondary: #52d3dc;
+            --accent: #4de8e5;
+            --bg: #111112;
+            --white: #181818;
+        }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: #333; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        header { 
+            text-align: center; 
+            padding: 50px 20px; 
+            background: linear-gradient(135deg, #131313, #232526); 
+            color: white; 
+        }
+        .section-card { 
+            background: var(--black); 
+            border-radius: 12px; 
+            padding: 35px; 
+            margin-bottom: 50px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            border: 1px solid #1d1e1e;
+        }
+        h2 { color: var(--primary); border-left: 6px solid var(--primary); padding-left: 15px; margin-bottom: 25px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
+        th { background-color: #1a1a1b; color: var(--secondary); padding: 15px; border: 1px solid #282727; }
+        td { padding: 12px; border: 1px solid #151515; text-align: center; }
+        .interpretation-box { 
+            background-color: #3f4040; 
+            border-left: 5px solid var(--accent); 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        .grid-charts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 30px; }
+        .chart-item { padding: 20px; border: 1px solid #0d0d0e; border-radius: 10px; background: #1b1b1b; }
+        .full-width { grid-column: span 2; }
     </style>
 </head>
 <body>
+
