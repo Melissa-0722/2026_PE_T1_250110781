@@ -3,7 +3,7 @@
             --secondary: #52d3dc;
             --accent: #4de8e5;
             --bg: #111112;
-            --white: #181818;
+            --white: #e9e1e1;
         }
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: #333; }
         .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
@@ -24,9 +24,9 @@
         h2 { color: var(--primary); border-left: 6px solid var(--primary); padding-left: 15px; margin-bottom: 25px; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
         th { background-color: #1a1a1b; color: var(--secondary); padding: 15px; border: 1px solid #282727; }
-        td { padding: 12px; border: 1px solid #151515; text-align: center; }
+        td { padding: 12px; border: 1px solid #e7e3e3; text-align: center; }
         .interpretation-box { 
-            background-color: #3f4040; 
+            background-color: #a0b1b1; 
             border-left: 5px solid var(--accent); 
             padding: 20px; 
             margin: 20px 0; 
@@ -36,6 +36,8 @@
         .grid-charts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 30px; }
         .chart-item { padding: 20px; border: 1px solid #0d0d0e; border-radius: 10px; background: #1b1b1b; }
         .full-width { grid-column: span 2; }
+         
+
 
 
 
